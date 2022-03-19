@@ -18,6 +18,7 @@
 /* USER CODE END Header */
 /* Includes ------------------------------------------------------------------*/
 #include "main.h"
+#include "tim.h"
 #include "usart.h"
 #include "gpio.h"
 
@@ -88,6 +89,7 @@ int main(void)
   /* Initialize all configured peripherals */
   MX_GPIO_Init();
   MX_USART1_UART_Init();
+  MX_TIM7_Init();
   /* USER CODE BEGIN 2 */
     lv_port_disp_init();
     lv_port_indev_init();
@@ -97,8 +99,12 @@ int main(void)
   /* USER CODE BEGIN WHILE */
   while (1)
   {
-      lv_timer_handler();
-      HAL_Delay(5);
+      //lv的心�?
+      lv_tick_inc(1);
+      //lv处理函数5
+//      lv_timer_handler();
+
+      HAL_Delay(1);
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
