@@ -96,6 +96,15 @@ int main(void)
 //    lv_port_indev_init();
 
     lv_port_disp_init();
+
+    lv_obj_t * obj = lv_obj_create(lv_scr_act());
+    lv_obj_set_size(obj, LV_PCT(20), LV_PCT(10));
+    lv_obj_align(obj, LV_ALIGN_CENTER, 0, 0);
+
+    lv_obj_t * label = lv_label_create(obj);
+    lv_label_set_text(label, "Hello, LVGL!");
+    lv_obj_align(label, LV_ALIGN_CENTER, 0, 0);
+
   /* USER CODE END 2 */
 
   /* Infinite loop */
