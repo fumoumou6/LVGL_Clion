@@ -46,7 +46,7 @@
 /* Private variables ---------------------------------------------------------*/
 
 /* USER CODE BEGIN PV */
-
+static uint16_t i = 0;
 /* USER CODE END PV */
 
 /* Private function prototypes -----------------------------------------------*/
@@ -57,7 +57,7 @@ void SystemClock_Config(void);
 
 /* Private user code ---------------------------------------------------------*/
 /* USER CODE BEGIN 0 */
-
+static uint8_t data[] = "qwertyuiop";
 /* USER CODE END 0 */
 
 /**
@@ -91,20 +91,23 @@ int main(void)
   MX_USART1_UART_Init();
   MX_TIM7_Init();
   /* USER CODE BEGIN 2 */
+  lv_init();
+
+//    lv_port_indev_init();
+
     lv_port_disp_init();
-    lv_port_indev_init();
   /* USER CODE END 2 */
 
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
   while (1)
   {
-      //lv鐨勫績璺?
-      lv_tick_inc(1);
-      //lv澶勭悊鍑芥暟5
-//      lv_timer_handler();
+      //lv心跳
 
-      HAL_Delay(1);
+      //lv任务处理
+      lv_timer_handler();
+
+      HAL_Delay(5);
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
@@ -159,6 +162,24 @@ void SystemClock_Config(void)
 }
 
 /* USER CODE BEGIN 4 */
+/**
+  * @brief 定时器回调函数，定时器中断服务函数调用
+  * @param 定时器中断序号
+  * @retval None
+  */
+void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim)
+{
+    if(htim==(&htim7))
+    {
+        i++;
+        lv_tick_inc(2);
+        if(i==1000){
+            HAL_GPIO_TogglePin(LCD_BL_GPIO_Port,LCD_BL_Pin);
+            i=0;
+        }
+
+    }
+}
 
 /* USER CODE END 4 */
 
