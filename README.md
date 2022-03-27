@@ -15,4 +15,3 @@ clion
 openocd
 stm32cubemx
 ~~~
-

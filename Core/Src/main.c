@@ -105,6 +105,8 @@ int main(void)
     lv_label_set_text(label, "Hello, LVGL!");
     lv_obj_align(label, LV_ALIGN_CENTER, 0, 0);
 
+    /*等疫情结束买个lcd，再继续添加屏幕驱动*/
+
   /* USER CODE END 2 */
 
   /* Infinite loop */
